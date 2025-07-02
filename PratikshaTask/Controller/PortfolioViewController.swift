@@ -109,10 +109,13 @@ class PortfolioViewController: UIViewController {
     
     // MARK: - Data Handling
     private func fetchData() {
-        activityIndicator.startAnimating()
-        errorLabel.isHidden = true
-        tableView.isHidden = true
-        summaryView.isHidden = true
+        // Show indicator only if there's no cached data to display initially
+        if viewModel.holdingsCount == 0 {
+            activityIndicator.startAnimating()
+            errorLabel.isHidden = true
+            tableView.isHidden = true
+            summaryView.isHidden = true
+        }
         
         viewModel.fetchUserHoldings { [weak self] result in
             guard let self = self else { return }
@@ -120,11 +123,15 @@ class PortfolioViewController: UIViewController {
             
             switch result {
             case .success:
+                self.errorLabel.isHidden = true
                 self.tableView.isHidden = false
                 self.summaryView.isHidden = false
                 self.tableView.reloadData()
                 self.summaryView.update(with: self.viewModel)
             case .failure(let error):
+                // This will only be called if the network fails AND there was no cache
+                self.tableView.isHidden = true
+                self.summaryView.isHidden = true
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Failed to load holdings.\n(\(error.localizedDescription))"
             }

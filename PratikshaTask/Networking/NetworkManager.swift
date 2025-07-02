@@ -42,6 +42,9 @@ class NetworkManager {
                 return
             }
 
+            // Save the successful response to the cache
+            CacheManager.shared.saveCache(data: data)
+
             do {
                 let responseDict = try JSONDecoder().decode(HoldingsResponse.self, from: data)
                 let holdings = responseDict.data
