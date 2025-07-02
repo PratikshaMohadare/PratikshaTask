@@ -62,6 +62,7 @@ class PortfolioViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.dataSource = self
+        tableView.allowsSelection = false
         
         summaryView.translatesAutoresizingMaskIntoConstraints = false
         

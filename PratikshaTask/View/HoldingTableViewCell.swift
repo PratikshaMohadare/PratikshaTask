@@ -17,11 +17,12 @@ class HoldingTableViewCell: UITableViewCell {
         return view
     }()
     private let symbolLabel = UILabel(font: .systemFont(ofSize: 16, weight: .bold))
-    private let netQuantityLabel = UILabel(font: .systemFont(ofSize: 14), textColor: .darkGray)
+    private let netQuantityLabel = UILabel(text: "NET QTY:", font: .systemFont(ofSize: 12), textColor: .darkGray)
+    private let netQuantityValueLabel = UILabel(font: .systemFont(ofSize: 16, weight: .regular), textAlignment: .right)
+    private let ltpTitleLabel = UILabel(text: "LTP:", font: .systemFont(ofSize: 12), textColor: .darkGray)
     private let ltpLabel = UILabel(font: .systemFont(ofSize: 16, weight: .regular), textAlignment: .right)
-    private let profitAndLossLabel = UILabel(font: .systemFont(ofSize: 14, weight: .regular), textAlignment: .right)
-    private let ltpTitleLabel = UILabel(text: "LTP:", font: .systemFont(ofSize: 14), textColor: .darkGray)
-    private let pnlTitleLabel = UILabel(text: "P&L:", font: .systemFont(ofSize: 14), textColor: .darkGray)
+    private let profitAndLossLabel = UILabel(font: .systemFont(ofSize: 16, weight: .regular), textAlignment: .right)
+    private let pnlTitleLabel = UILabel(text: "P&L:", font: .systemFont(ofSize: 12), textColor: .darkGray)
 
     // MARK: - Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -35,20 +36,19 @@ class HoldingTableViewCell: UITableViewCell {
 
     // MARK: - UI Setup
     private func setupUI() {
-        // **FIX: Add top separator**
         contentView.addSubview(topSeparator)
         
-        // **FIX: Adjust spacing for a more accurate layout**
-        let verticalStackView = UIStackView(arrangedSubviews: [symbolLabel, netQuantityLabel], axis: .vertical, spacing: 8, alignment: .leading)
-        let ltpStackView = UIStackView(arrangedSubviews: [ltpTitleLabel, ltpLabel], spacing: 8)
-        let pnlStackView = UIStackView(arrangedSubviews: [pnlTitleLabel, profitAndLossLabel], spacing: 8)
+        let netQtyStackView = UIStackView(arrangedSubviews: [netQuantityLabel, netQuantityValueLabel], spacing: 4)
+        let leftStackView = UIStackView(arrangedSubviews: [symbolLabel, netQtyStackView], axis: .vertical, spacing: 4, alignment: .leading)
+        
+        let ltpStackView = UIStackView(arrangedSubviews: [ltpTitleLabel, ltpLabel], spacing: 4)
+        let pnlStackView = UIStackView(arrangedSubviews: [pnlTitleLabel, profitAndLossLabel], spacing: 4)
         let rightVerticalStackView = UIStackView(arrangedSubviews: [ltpStackView, pnlStackView], axis: .vertical, spacing: 8, alignment: .trailing)
         
-        let mainStackView = UIStackView(arrangedSubviews: [verticalStackView, rightVerticalStackView], distribution: .fillEqually)
+        let mainStackView = UIStackView(arrangedSubviews: [leftStackView, rightVerticalStackView], distribution: .fillEqually)
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(mainStackView)
 
-        // **FIX: Adjust constraints for better spacing and cell height**
         NSLayoutConstraint.activate([
             topSeparator.topAnchor.constraint(equalTo: contentView.topAnchor),
             topSeparator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -65,7 +65,7 @@ class HoldingTableViewCell: UITableViewCell {
     // MARK: - Configuration
     func configure(with holding: Holding) {
         symbolLabel.text = holding.symbol.uppercased()
-        netQuantityLabel.text = "NET QTY: \(holding.quantity)"
+        netQuantityValueLabel.text = "\(holding.quantity)"
         ltpLabel.text = holding.ltp.toCurrency()
         
         let pnl = (holding.ltp - holding.avgPrice) * Double(holding.quantity)
