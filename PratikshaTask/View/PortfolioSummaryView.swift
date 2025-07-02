@@ -16,7 +16,8 @@ class PortfolioSummaryView: UIView {
     private let chevronImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "chevron.up"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemPurple
+        imageView.tintColor = .systemGray
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -28,7 +29,9 @@ class PortfolioSummaryView: UIView {
         return view
     }()
     
-    private let profitLossLabel = PortfolioDetailRowView(title: "Profit & Loss*", titleFont: .systemFont(ofSize: 16, weight: .bold))
+    private let profitLossTitleLabel = UILabel(text: "Profit & Loss*", font: .systemFont(ofSize: 16, weight: .bold), textColor: .darkGray)
+    private let profitLossValueLabel = UILabel(font: .systemFont(ofSize: 16), textAlignment: .right)
+    
     private let todaysPNLLabel = PortfolioDetailRowView(title: "Today's Profit & Loss*")
     private let totalInvestmentLabel = PortfolioDetailRowView(title: "Total Investment*")
     private let currentValueLabel = PortfolioDetailRowView(title: "Current Value*")
@@ -55,25 +58,41 @@ class PortfolioSummaryView: UIView {
     private func setupUI() {
         backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         
-        let mainVerticalStack = UIStackView(arrangedSubviews: [expandableContentStackView, separatorView, profitLossLabel])
+        // This stack group contains the title and the chevron, aligned to the left.
+        let leftBottomStack = UIStackView(arrangedSubviews: [profitLossTitleLabel, chevronImageView])
+        leftBottomStack.spacing = 8
+        leftBottomStack.alignment = .center
+        
+        // A spacer view will push the left and right elements apart.
+        let spacerView = UIView()
+        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+        // This is the main horizontal stack for the entire bottom row.
+        let bottomRowStack = UIStackView(arrangedSubviews: [leftBottomStack, spacerView, profitLossValueLabel])
+        
+        // This is the main vertical stack for laying out all internal content.
+        let mainVerticalStack = UIStackView(arrangedSubviews: [expandableContentStackView, separatorView, bottomRowStack])
         mainVerticalStack.translatesAutoresizingMaskIntoConstraints = false
         mainVerticalStack.axis = .vertical
         mainVerticalStack.spacing = 12
         
-        addSubview(chevronImageView)
         addSubview(mainVerticalStack)
 
         expandableContentStackView.isHidden = true
         separatorView.isHidden = true
 
+        let topConstraint = mainVerticalStack.topAnchor.constraint(equalTo: topAnchor, constant: 16)
+        
+        let bottomConstraint = mainVerticalStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12)
+        bottomConstraint.priority = .defaultHigh // Give this higher importance
+
         NSLayoutConstraint.activate([
-            chevronImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            chevronImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            chevronImageView.widthAnchor.constraint(equalToConstant: 20),
             
-            mainVerticalStack.topAnchor.constraint(equalTo: chevronImageView.bottomAnchor, constant: 16),
+            topConstraint,
             mainVerticalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             mainVerticalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            mainVerticalStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
+            bottomConstraint,
             
             separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
@@ -87,7 +106,13 @@ class PortfolioSummaryView: UIView {
         
         let pnlValue = viewModel.totalPNL
         let pnlPercentage = viewModel.profitLossPercentage
-        profitLossLabel.setValue(pnlValue, percentage: pnlPercentage)
+        
+        let valueString: String
+        let percentageSign = pnlPercentage >= 0 ? "+" : ""
+        valueString = String(format: "%@ (%@%.2f%%)", pnlValue.toCurrency(), percentageSign, abs(pnlPercentage))
+        
+        profitLossValueLabel.text = valueString
+        profitLossValueLabel.textColor = pnlValue >= 0 ? UIColor(red: 0.1, green: 0.6, blue: 0.1, alpha: 1.0) : .systemRed
     }
     
     func toggleState() {

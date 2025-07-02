@@ -67,9 +67,13 @@ class CustomSegmentedControl: UIView {
     }
     
     private func configSelectorView() {
-        let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
-        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height - 3, width: selectorWidth, height: 1))
+        let buttonContainerWidth = frame.width / CGFloat(self.buttonTitles.count)
+        let selectorWidth = buttonContainerWidth * 0.7 // Make it 70% of the button's width
+        let initialX = (buttonContainerWidth - selectorWidth) / 2 // Center it under the first button
+        
+        selectorView = UIView(frame: CGRect(x: initialX, y: self.frame.height - 3, width: selectorWidth, height: 1))
         selectorView.backgroundColor = selectorViewColor
+
         addSubview(selectorView)
     }
     
