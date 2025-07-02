@@ -10,7 +10,7 @@ import UIKit
 class PortfolioViewController: UIViewController {
     
     // MARK: - Properties
-    private let viewModel = PortfolioViewModel()
+    private let viewModel = PortfolioViewModel(holdings: [])
     private var summaryViewHeightConstraint: NSLayoutConstraint!
 
     // MARK: - UI Components

@@ -10,7 +10,11 @@ import Foundation
 class PortfolioViewModel {
 
     // MARK: - Properties
-    private var holdings: [Holding] = []
+    private var holdings: [Holding]
+
+    init(holdings: [Holding] = []) {
+        self.holdings = holdings
+    }
 
     // MARK: - Calculated Properties (Business Logic)
 

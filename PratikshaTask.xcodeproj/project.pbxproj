@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		8CE7E71D2E1574640030646A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C2F2BC12E1453ED00D6BD67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C2F2BC82E1453ED00D6BD67;
+			remoteInfo = PratikshaTask;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8C2F2BC92E1453ED00D6BD67 /* PratikshaTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PratikshaTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CE7E7192E1574640030646A /* PratikshaTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PratikshaTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +40,22 @@
 			path = PratikshaTask;
 			sourceTree = "<group>";
 		};
+		8CE7E71A2E1574640030646A /* PratikshaTaskTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PratikshaTaskTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8C2F2BC62E1453ED00D6BD67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE7E7162E1574640030646A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2F2BCB2E1453ED00D6BD67 /* PratikshaTask */,
+				8CE7E71A2E1574640030646A /* PratikshaTaskTests */,
 				8C2F2BCA2E1453ED00D6BD67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2F2BC92E1453ED00D6BD67 /* PratikshaTask.app */,
+				8CE7E7192E1574640030646A /* PratikshaTaskTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +108,29 @@
 			productReference = 8C2F2BC92E1453ED00D6BD67 /* PratikshaTask.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8CE7E7182E1574640030646A /* PratikshaTaskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CE7E71F2E1574640030646A /* Build configuration list for PBXNativeTarget "PratikshaTaskTests" */;
+			buildPhases = (
+				8CE7E7152E1574640030646A /* Sources */,
+				8CE7E7162E1574640030646A /* Frameworks */,
+				8CE7E7172E1574640030646A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CE7E71E2E1574640030646A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8CE7E71A2E1574640030646A /* PratikshaTaskTests */,
+			);
+			name = PratikshaTaskTests;
+			packageProductDependencies = (
+			);
+			productName = PratikshaTaskTests;
+			productReference = 8CE7E7192E1574640030646A /* PratikshaTaskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +143,10 @@
 				TargetAttributes = {
 					8C2F2BC82E1453ED00D6BD67 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					8CE7E7182E1574640030646A = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8C2F2BC82E1453ED00D6BD67;
 					};
 				};
 			};
@@ -113,12 +165,20 @@
 			projectRoot = "";
 			targets = (
 				8C2F2BC82E1453ED00D6BD67 /* PratikshaTask */,
+				8CE7E7182E1574640030646A /* PratikshaTaskTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8C2F2BC72E1453ED00D6BD67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE7E7172E1574640030646A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +195,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CE7E7152E1574640030646A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8CE7E71E2E1574640030646A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C2F2BC82E1453ED00D6BD67 /* PratikshaTask */;
+			targetProxy = 8CE7E71D2E1574640030646A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8C2F2BDD2E1453EF00D6BD67 /* Debug */ = {
@@ -311,6 +386,40 @@
 			};
 			name = Release;
 		};
+		8CE7E7202E1574640030646A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeNinja.PratikshaTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PratikshaTask.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PratikshaTask";
+			};
+			name = Debug;
+		};
+		8CE7E7212E1574640030646A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeNinja.PratikshaTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PratikshaTask.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PratikshaTask";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -328,6 +437,15 @@
 			buildConfigurations = (
 				8C2F2BDD2E1453EF00D6BD67 /* Debug */,
 				8C2F2BDE2E1453EF00D6BD67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CE7E71F2E1574640030646A /* Build configuration list for PBXNativeTarget "PratikshaTaskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CE7E7202E1574640030646A /* Debug */,
+				8CE7E7212E1574640030646A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

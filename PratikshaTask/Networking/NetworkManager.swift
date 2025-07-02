@@ -15,9 +15,13 @@ enum NetworkError: Error {
     case decodingError(Error)
 }
 
+enum Endpoints: String {
+    case fetchHoldings = "https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/"
+}
+
 class NetworkManager {
     static let shared = NetworkManager()
-    private let urlString = "https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/"
+    private let urlString = Endpoints.fetchHoldings.rawValue
 
     private init() {}
 
